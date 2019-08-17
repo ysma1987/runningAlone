@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <springProperty scope="context" name="LOG_HOME" source="logHome"/>
+    <springProperty scope="context" name="LOG_MAX_HISTORY" source="logMaxHistory"/>
+    <springProperty scope="context" name="LOG_LEVEL" source="logLevel"/>
+    <springProperty scope="context" name="Log_MAXfILESIZE" source="logMaxFileSize"/>
+    <springProperty scope="context" name="Log_TOTALSIZECAP" source="logTotalSizeCap"/>
+    <springProperty scope="context" name="Detail_Log_MAXfILESIZE" source="detailLogMaxFileSize"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %5p | %t | %-55logger{55} ==> %m %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- groovy脚本里的日志
+    <appender name="GROOVY_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/groovy.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/groovy.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>${Log_MAXfILESIZE}</maxFileSize>
+            <totalSizeCap>${Log_TOTALSIZECAP}</totalSizeCap>
+            <maxHistory>${LOG_MAX_HISTORY}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+       -->
+
+    <!-- 通用日志记录-->
+    <appender name="COMMON_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_HOME}/ppt.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/channel-agg.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<maxFileSize>${Log_MAXfILESIZE}</maxFileSize>
+			<totalSizeCap>${Log_TOTALSIZECAP}</totalSizeCap>
+            <maxHistory>${LOG_MAX_HISTORY}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <root>
+        <level value="${LOG_LEVEL}"/>
+        <!--线上屏蔽此处:STDOUT-->
+        <appender-ref ref="STDOUT"/>
+        <!--<appender-ref ref="COMMON_APPENDER"/>-->
+    </root>
+
+    <!--<logger name="groovy" additivity="false">
+        <level value="${LOG_LEVEL}"/>
+        &lt;!&ndash;线上屏蔽此处:STDOUT&ndash;&gt;
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="GROOVY_APPENDER"/>
+    </logger>-->
+
+</configuration>
