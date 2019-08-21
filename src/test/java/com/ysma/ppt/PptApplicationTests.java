@@ -1,13 +1,18 @@
 package com.ysma.ppt;
 
 import com.ysma.ppt.cache.CacheTest;
+import com.ysma.ppt.service.async.FutureService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.function.BiConsumer;
 
 /**
  * springboot2 + junit4
@@ -19,6 +24,24 @@ public class PptApplicationTests {
 
 	@Autowired
 	private CacheTest cacheTest;
+
+	@Autowired
+	private FutureService futureService;
+
+	@Test
+	public void testAsync() throws InterruptedException {
+		CompletableFuture<String> javaF = futureService.guess("java");
+		CompletableFuture<String> phpF = futureService.guessAgain("php");
+
+		CompletableFuture first = CompletableFuture.anyOf(javaF, phpF).whenComplete((r, t) -> {
+			if(t != null){
+				System.out.println("异常" + t.getMessage());
+			} else {
+				System.out.println("结果：" + r);
+			}
+		});
+		TimeUnit.SECONDS.sleep(2);
+	}
 
 	@Test
 	public void testCache() {

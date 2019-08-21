@@ -3,19 +3,30 @@ package com.ysma.ppt;
 import com.ysma.ppt.cache.CacheConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@EnableScheduling//schedule
-@EnableCaching //caffeine
-@EnableAspectJAutoProxy(exposeProxy = true)//AopContext.currentProxy()
+//quartz
+@EnableScheduling
+//caffeine 缓存
+@EnableCaching
+//async 异步
+@EnableAsync
+//AopContext.currentProxy() 将代理类暴露给aop切面容器
+@EnableAspectJAutoProxy(exposeProxy = true)
+//包扫描 可以指定加载某个部分[包含jar内的包] 也可以指定不加载某个部分
 @ComponentScan(basePackages = {"com.ysma.ppt"},
 		excludeFilters = {
 			@ComponentScan.Filter(value = CacheConfig.class, type= FilterType.ASSIGNABLE_TYPE)})
+
+//Servlet、Filter、Listener 可以直接通过 @WebServlet、@WebFilter、@WebListener 注解自动注册，无需其他代码。
+@ServletComponentScan
 public class PptApplication {
 
 	public static void main(String[] args) {

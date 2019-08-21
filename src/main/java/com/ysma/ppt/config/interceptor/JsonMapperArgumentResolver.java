@@ -1,4 +1,4 @@
-package com.ysma.ppt.config.filter;
+package com.ysma.ppt.config.interceptor;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.*;
@@ -136,7 +136,6 @@ public class JsonMapperArgumentResolver implements HandlerMethodArgumentResolver
      * 
      * @param webRequest webRequest
      * @return 参数字符串
-     * @throws IOException
      */
     private String getAllParam(NativeWebRequest webRequest) throws IOException {
         HttpServletRequest httpServletRequest = webRequest

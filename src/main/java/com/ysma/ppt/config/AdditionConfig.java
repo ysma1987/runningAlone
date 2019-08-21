@@ -1,6 +1,6 @@
 package com.ysma.ppt.config;
 
-import com.ysma.ppt.config.filter.JsonMapperArgumentResolver;
+import com.ysma.ppt.config.interceptor.JsonMapperArgumentResolver;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
