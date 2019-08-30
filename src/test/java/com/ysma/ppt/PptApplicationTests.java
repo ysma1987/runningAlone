@@ -1,7 +1,11 @@
 package com.ysma.ppt;
 
+import com.github.rholder.retry.*;
 import com.ysma.ppt.cache.CacheTest;
+import com.ysma.ppt.service.GuavaRetryService;
+import com.ysma.ppt.service.SpringRetryService;
 import com.ysma.ppt.service.async.FutureService;
+import com.ysma.ppt.util.ThreadUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-import java.util.function.BiConsumer;
 
 /**
  * springboot2 + junit4
@@ -28,8 +30,44 @@ public class PptApplicationTests {
 	@Autowired
 	private FutureService futureService;
 
+	@Autowired
+	private SpringRetryService springRetryService;
+
+	@Autowired
+	private GuavaRetryService guavaRetryService;
+
+	@Test
+	public void testSpringRetry(){
+		//TODO 测试spring的重试功能
+
+		springRetryService.retry("gava");
+	}
+
+	@Test
+	public void testGuavaRetry(){
+		//TODO 测试guava的重试功能
+
+		Retryer<String> retryer = RetryerBuilder
+				.<String>newBuilder()
+				.retryIfExceptionOfType(IllegalArgumentException.class)
+				.withStopStrategy(StopStrategies.stopAfterAttempt(2))
+				.build();
+		try {
+			retryer.call(()->{guavaRetryService.retry("guava"); return null;});
+		} catch (ExecutionException e) {
+			System.out.println("============ExecutionException");
+		} catch (RetryException e) {
+			System.out.println("============RetryException");
+		}
+	}
+
 	@Test
 	public void testAsync() throws InterruptedException {
+		//TODO 测试 CompletableFuture 和ThreadLocal
+
+		ThreadUtil.setString("age:18");
+		ThreadUtil.setInheritString("age:19");
+
 		CompletableFuture<String> javaF = futureService.guess("java");
 		CompletableFuture<String> phpF = futureService.guessAgain("php");
 
@@ -45,6 +83,7 @@ public class PptApplicationTests {
 
 	@Test
 	public void testCache() {
+		//TODO 测试caffeine缓存
 		Thread testAopCache = new Thread(()->{
 			Integer a = cacheTest.test();
 			Integer b = cacheTest.test();

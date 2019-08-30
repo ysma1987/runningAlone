@@ -1,12 +1,12 @@
 package com.ysma.ppt.service.async;
 
+import com.alibaba.fastjson.JSON;
+import com.ysma.ppt.util.ThreadUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -21,6 +21,8 @@ public class FutureService {
             log.error("FutureTask.guess InterruptedException");
         }
 
+        System.out.println("threadLocal=>"+ JSON.toJSONString(ThreadUtil.getString()));
+        System.out.println("threadLocal=>"+ ThreadUtil.getInheritString());
         return CompletableFuture.completedFuture(asker + ":good");
     }
 

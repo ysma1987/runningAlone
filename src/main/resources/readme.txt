@@ -3,9 +3,9 @@
 
 2、请求封装 @Json
 
-3、Thread--队列长度  ==>多种thread管理机制
+3、ThreadLocal
 
-4、ThreadLocal
+4、Thread--队列长度  ==>多种thread管理机制
 
 5、CAS
 

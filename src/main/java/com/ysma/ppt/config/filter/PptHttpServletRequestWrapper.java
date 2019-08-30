@@ -17,6 +17,8 @@ import java.io.InputStreamReader;
  */
 public class PptHttpServletRequestWrapper extends HttpServletRequestWrapper{
 
+    private static final String ENCODING = "UTF-8";
+
     /**不重写 会导致request取不到数据*/
     private byte[] bytes;
 
@@ -35,7 +37,7 @@ public class PptHttpServletRequestWrapper extends HttpServletRequestWrapper{
             String queryStr = request.getQueryString();
             if (Base64.isBase64(queryStr)) {
                 byte[] bytes = Base64.decodeBase64(queryStr);
-                getQueryStr = new String(bytes, "UTF-8");
+                getQueryStr = new String(bytes, ENCODING);
             } else {
                 getQueryStr = queryStr;
             }
