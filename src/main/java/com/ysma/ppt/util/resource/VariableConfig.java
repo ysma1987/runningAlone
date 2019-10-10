@@ -10,4 +10,8 @@ public class VariableConfig {
 
     @Value("${http.wrap.flag}")
     private Boolean httpWrapFlag;
+
+    /**restTemplate 请求超时时间*/
+    @Value("${rest.template.time.out}")
+    private Integer restTemplateTimeOut;
 }
