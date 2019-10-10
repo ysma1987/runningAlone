@@ -1,6 +1,6 @@
 package com.ysma.ppt.config.filter;
 
-import com.ysma.ppt.util.VariableConfig;
+import com.ysma.ppt.util.resource.VariableConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;

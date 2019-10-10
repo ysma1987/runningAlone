@@ -1,6 +1,6 @@
 package com.ysma.ppt.groovy
 /** @author ysma 2019-10-09*/
-import com.ysma.ppt.util.JsonPathUtil
+import com.ysma.ppt.util.resource.JsonPathUtil
 
 //定义path路径和code
 def pathList = [

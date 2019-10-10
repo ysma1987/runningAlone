@@ -1,6 +1,7 @@
 package com.ysma.ppt;
 
 import com.ysma.ppt.cache.CacheConfig;
+import com.ysma.ppt.controller.server.SocketServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -34,6 +35,10 @@ public class PptApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PptApplication.class, args);
+
+		//启动socket服务
+		SocketServer server = new SocketServer();
+		server.startSocketServer(8788);
 	}
 
 }

@@ -35,7 +35,7 @@ public class GroovyTest {
 
     private String getScript(){
 
-        String script ="import com.ysma.ppt.util.JsonPathUtil\n" +
+        String script ="import com.ysma.ppt.util.resource.JsonPathUtil\n" +
                 "\n" +
                 "def pathList = [\n" +
                 "        [\"code\": \"color\", \"path\": \"store.bicycle.color\"],\n" +

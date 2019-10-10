@@ -1,8 +1,8 @@
-package com.ysma.ppt.util;
+package com.ysma.ppt.util.resource;
 
 import com.jayway.jsonpath.*;
 import com.jayway.jsonpath.spi.json.JsonSmartJsonProvider;
-import lombok.Data;
+import com.ysma.ppt.intf.pojo.TemplateDO;
 import org.springframework.cglib.beans.BeanMap;
 
 import java.util.ArrayList;
@@ -147,15 +147,4 @@ public class JsonPathUtil {
                 "  }\n" +
                 "}";
     }
-}
-
-@Data
-class TemplateDO{
-
-    private String code;
-
-    private String path;
-
-    private String dataType;
-
 }

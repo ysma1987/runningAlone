@@ -1,4 +1,4 @@
-package com.ysma.ppt.util;
+package com.ysma.ppt.util.resource;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
