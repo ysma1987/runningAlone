@@ -10,3 +10,5 @@
 5、CAS
 
 6、DB 新增cas字段
+
+7、settings.xml  maven本地仓库配置
