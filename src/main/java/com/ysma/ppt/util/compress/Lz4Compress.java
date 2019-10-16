@@ -9,8 +9,11 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 /**
- * lz4压缩
- * LZ4是一种无损数据压缩算法，着重于压缩和解压缩速度
+ * lz4压缩：LZ4是一种无损数据压缩算法，着重于压缩和解压缩速度
+ * Yann Collet 在2011年发明了LZ4压缩算法。
+ * LZ4算法虽然没有middle out那么牛逼得无死角，但在能保证一定压缩率的情况下，它以它无敌的压缩速度和更快的解压速度著称
+ * 如果一句话概括LZ4：LZ4就是一个用16k大小哈希表储存字典并简化检索的LZ77
+ *
  */
 public class Lz4Compress extends AbstCompress implements ICompress {
 

@@ -4,8 +4,11 @@ import com.ysma.ppt.cache.CacheConfig;
 import com.ysma.ppt.controller.server.SocketServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.FilterType;
@@ -41,4 +44,14 @@ public class PptApplication {
 		server.startSocketServer(8788);
 	}
 
+	//
+	@Bean
+	public ServletWebServerFactory servletWebServerFactory(){
+		Integer cpuNum = Runtime.getRuntime().availableProcessors();
+		UndertowServletWebServerFactory factory = new UndertowServletWebServerFactory();
+		factory.setIoThreads(cpuNum);
+		factory.setWorkerThreads(cpuNum * 4);
+		factory.setUseDirectBuffers(true);
+		return new UndertowServletWebServerFactory();
+	}
 }
