@@ -27,7 +27,6 @@ public class Lz4Compress extends AbstCompress implements ICompress {
     public byte[] compress(byte[] data) throws IOException {
 
         try {
-
             //1.zip压缩
             ByteArrayOutputStream baOs = new ByteArrayOutputStream();
             LZ4BlockOutputStream lz4Os = new LZ4BlockOutputStream(baOs);
