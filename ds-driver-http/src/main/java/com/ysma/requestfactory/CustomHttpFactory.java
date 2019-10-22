@@ -1,9 +1,9 @@
 package com.ysma.requestfactory;
 
 import com.alibaba.fastjson.JSONObject;
-import com.dingxianginc.obj.commonutil.HttpClientUtil;
-import com.dingxianginc.obj.constant.NameListConstant;
-import com.dingxianginc.obj.params.DxRequestModel;
+import com.ysma.commonutil.HttpClientUtil;
+import com.ysma.constant.NameListConstant;
+import com.ysma.ppt.params.DxRequestModel;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;

@@ -2,9 +2,9 @@ package com.ysma.requestfactory;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.dingxianginc.obj.constant.NameListConstant;
-import com.dingxianginc.obj.params.DxRequestModel;
-import com.dingxianginc.obj.params.DxResponseModel;
+import com.ysma.constant.NameListConstant;
+import com.ysma.ppt.params.DxRequestModel;
+import com.ysma.ppt.params.DxResponseModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

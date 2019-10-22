@@ -1,10 +1,11 @@
 package com.ysma.service;
 
-import com.dingxianginc.obj.IDxDriver;
-import com.dingxianginc.obj.constant.NameListConstant;
-import com.dingxianginc.obj.params.DxRequestModel;
-import com.dingxianginc.obj.params.DxResponseModel;
-import com.dingxianginc.obj.requestfactory.CustomRequestFactory;
+
+import com.ysma.constant.NameListConstant;
+import com.ysma.ppt.IDxDriver;
+import com.ysma.ppt.params.DxRequestModel;
+import com.ysma.ppt.params.DxResponseModel;
+import com.ysma.requestfactory.CustomRequestFactory;
 
 /**
  * @author ysma 2019-10-21 http驱动包
