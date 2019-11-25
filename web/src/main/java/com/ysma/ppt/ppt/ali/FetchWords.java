@@ -11,6 +11,7 @@ import java.util.concurrent.*;
 
 /**
  * @author ysma 2019-11-24
+ * ali笔试题目
  */
 public class FetchWords {
 
