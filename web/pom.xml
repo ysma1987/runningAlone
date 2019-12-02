@@ -196,12 +196,11 @@
             <scope>test</scope>
         </dependency>
 
+        <!--rabbit mq-->
         <dependency>
-            <groupId>com.ysma</groupId>
-            <artifactId>ds-driver-base</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>
