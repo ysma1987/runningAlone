@@ -195,6 +195,11 @@
             <type>pom</type>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.ysma</groupId>
+            <artifactId>ds-driver-base</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <!--rabbit mq-->
         <dependency>
