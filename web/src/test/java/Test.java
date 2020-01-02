@@ -10,19 +10,35 @@ import java.util.stream.Collectors;
 
 public class Test {
     public static void main(String[] args) {
-        List<Long> policyLabs = Arrays.asList(1L,2L,34L,56L,78L);
+        /*List<Long> policyLabs = Arrays.asList(1L,2L,34L,56L,78L);
         List<Integer> labIds = policyLabs.stream()
                 .mapToInt(Long::intValue)
                 .collect(ArrayList::new, List::add, List::addAll);
-        System.out.println(labIds);
+        System.out.println(labIds);*/
+        List<String> policyLabs = Arrays.asList("1","2","34","56","78");
+        String a = String.join(",", policyLabs);
+        System.out.println(a);
 
     }
     public static void main5(String[] args) {
-        List<Person> list = Arrays.asList(new Person("ysma", 18),
-                new Person("ysma", 20),
-                new Person("zsy",18));
-        Map<String, Person> map = list.stream().collect(Collectors.toMap(Person::getName, v->v, (v1, v2)->v2));
-        System.out.println(JSON.toJSONString(map));
+        List<Person> list = new ArrayList<>();
+        list.addAll(Arrays.asList(new Person("ysma", 18),
+                new Person("malian", 20),
+                new Person("zsy",18)));
+        /*Map<String, Person> map = list.stream().collect(Collectors.toMap(Person::getName, v->v, (v1, v2)->v2));
+        System.out.println(JSON.toJSONString(map));*/
+        Person a = new Person("ysma", 21);
+        Person b = new Person("bella", 18);
+        List<Person> listb = Arrays.asList(a, b);
+        for(Person temp : listb){
+            list.removeIf(f->f.getName().equals(temp.getName()));
+            if (list.stream().noneMatch((f) -> f.getName().equals(temp.getName()))){
+                list.add(temp);
+            }
+        }
+        System.out.println(JSON.toJSONString(list));
+
+
     }
     public static void main4(String[] args) throws InterruptedException {
         BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(10000);
