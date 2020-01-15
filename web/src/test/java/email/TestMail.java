@@ -1,3 +1,5 @@
+package email;
+
 import com.ysma.ppt.util.mail.EmailEntity;
 import com.ysma.ppt.util.mail.MailUtil;
 import org.springframework.mail.javamail.JavaMailSender;
