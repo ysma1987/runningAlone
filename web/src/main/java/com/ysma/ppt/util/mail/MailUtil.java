@@ -29,11 +29,14 @@ public class MailUtil {
         sender.setUsername(bo.getAccount());
         sender.setPassword(bo.getPassword());
         sender.setDefaultEncoding("UTF-8");
-        sender.setProtocol("smtp");
         Properties p = new Properties();
         p.setProperty("mail.smtp.timeout", timeout + "");
         p.setProperty("mail.smtp.auth", "true");
-        //p.setProperty("mail.smtp.starttls.enable", "true");
+        /*ssl通道时设置 必须*/
+        p.setProperty("mail.smtp.ssl.enable", "true");
+        /*tsl通道时设置 必须*/
+        p.setProperty("mail.smtp.starttls.enable", "true");
+        p.setProperty("mail.smtp.starttls.required", "true");
         sender.setJavaMailProperties(p);
         return sender;
     }
