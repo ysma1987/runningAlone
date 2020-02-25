@@ -1,7 +1,7 @@
 package com.ysma.ppt.config.filter;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.tomcat.util.codec.binary.Base64;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;

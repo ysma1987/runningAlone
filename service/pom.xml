@@ -8,12 +8,16 @@
         <groupId>com.ysma</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+
+    <artifactId>service</artifactId>
     <modelVersion>4.0.0</modelVersion>
+    <description>service组件</description>
 
-    <artifactId>elastic-springbt</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <description>es组件</description>
-
+    <properties>
+        <elasticsearch.version>5.6.5</elasticsearch.version>
+        <spring-data-elasticsearh>3.0.9.RELEASE</spring-data-elasticsearh>
+        <spring-elasticsearch.version>2.1.7.RELEASE</spring-elasticsearch.version>
+    </properties>
 
     <dependencies>
         <!-- elasticsearch启动器 (必须)-->
@@ -22,52 +26,43 @@
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
             <version>${spring-elasticsearch.version}</version>
         </dependency>
-        <!--强制声明ES版本-->
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-elasticsearch</artifactId>
-            <version>${spring-data-elasticsearh}</version>
-        </dependency>
+        <!--强制声明ES版本
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
             <version>2.0.9.RELEASE</version>
         </dependency>
-        <!-- 强制声明ES版本
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-elasticsearch</artifactId>
+            <version>${spring-data-elasticsearh}</version>
+        </dependency>-->
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
             <version>${elasticsearch.version}</version>
-        </dependency>-->
-        <!-- 因为要采用java编码直接操作ES所以需要引入
-        <dependency>
-            <groupId>org.elasticsearch.client</groupId>
-            <artifactId>transport</artifactId>
-            <version>${elasticsearch.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>-->
+        </dependency>
 
         <!--父pom定义版本 与web冗余-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>1.16.16</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
+            <version>1.2.46</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
+            <version>4.5.3</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
+            <version>18.0</version>
         </dependency>
     </dependencies>
 
