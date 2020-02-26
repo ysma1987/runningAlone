@@ -24,9 +24,9 @@
 
     <modules>
         <module>ds-driver-base</module>
-		<module>web</module>
 		<module>ds-driver-http</module>
         <module>service</module>
+		<module>web</module>
     </modules>
 
 </project>

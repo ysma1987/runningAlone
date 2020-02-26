@@ -9,14 +9,15 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <name>service</name>
     <artifactId>service</artifactId>
     <modelVersion>4.0.0</modelVersion>
-    <description>service组件</description>
+    <description>module for service</description>
 
     <properties>
+        <spring-boot.version>2.1.7.RELEASE</spring-boot.version>
         <elasticsearch.version>5.6.5</elasticsearch.version>
         <spring-data-elasticsearh>3.0.9.RELEASE</spring-data-elasticsearh>
-        <spring-elasticsearch.version>2.1.7.RELEASE</spring-elasticsearch.version>
     </properties>
 
     <dependencies>
@@ -24,7 +25,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
-            <version>${spring-elasticsearch.version}</version>
+            <version>${spring-boot.version}</version>
         </dependency>
         <!--强制声明ES版本
         <dependency>
@@ -43,7 +44,7 @@
             <version>${elasticsearch.version}</version>
         </dependency>
 
-        <!--父pom定义版本 与web冗余-->
+        <!--三方jar包-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
