@@ -9,6 +9,7 @@
     </parent>
 
     <name>web</name>
+    <packaging>war</packaging>
     <artifactId>web</artifactId>
     <modelVersion>4.0.0</modelVersion>
     <description>module for web</description>
@@ -181,7 +182,19 @@
     </dependencies>
 
     <build>
+        <finalName>ppt</finalName>
         <plugins>
+            <!--war-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+            <!--jar-->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
