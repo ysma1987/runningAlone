@@ -27,6 +27,6 @@
 		<module>ds-driver-http</module>
         <module>service</module>
 		<module>web</module>
-    </modules>
+	</modules>
 
 </project>
