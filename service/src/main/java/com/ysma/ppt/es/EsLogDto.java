@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * es 映射文件
+ * com.ysma.ppt.es 映射文件
  */
 @Data
 @Document(indexName = "#{esLogIndex.indexName}", type = "#{esLogIndex.indexType}", shards = 3)

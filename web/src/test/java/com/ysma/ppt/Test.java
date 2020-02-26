@@ -1,3 +1,5 @@
+package com.ysma.ppt;
+
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.ClassToInstanceMap;
 import com.google.common.collect.MutableClassToInstanceMap;

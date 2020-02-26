@@ -1,4 +1,4 @@
-package com.ysma.ppt.cache;
+package com.ysma.ppt.redis;
 
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.aop.framework.AopContext;

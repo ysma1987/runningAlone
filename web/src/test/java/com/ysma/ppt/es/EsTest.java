@@ -1,7 +1,8 @@
+package com.ysma.ppt.es;
+
 import com.alibaba.fastjson.JSON;
+import com.ysma.ppt.BaseTest;
 import com.ysma.ppt.PptApplication;
-import com.ysma.ppt.es.EsLogDto;
-import com.ysma.ppt.es.EsLogIndex;
 import com.ysma.ppt.es.service.EsLogService;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
@@ -23,7 +24,7 @@ import java.text.ParseException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = PptApplication.class)// 指定启动类
-public class EsTest {
+public class EsTest extends BaseTest {
 
 	@Autowired
 	private ElasticsearchTemplate elasticsearchTemplate;

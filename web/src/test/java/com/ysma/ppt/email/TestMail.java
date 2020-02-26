@@ -1,4 +1,4 @@
-package email;
+package com.ysma.ppt.email;
 
 import com.ysma.ppt.util.mail.EmailEntity;
 import com.ysma.ppt.util.mail.MailUtil;

@@ -79,7 +79,7 @@ under the License.
             <id>repo1</id>
             <mirrorOf>central</mirrorOf>
             <name>Human Readable Name for this Mirror.</name>
-            <url>http://repo1.maven.org/maven2/</url>
+            <url>https://repo.spring.io/libs-release/</url>
         </mirror>
 
         <!-- 中央仓库2 -->

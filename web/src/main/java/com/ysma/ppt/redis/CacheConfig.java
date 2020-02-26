@@ -1,4 +1,4 @@
-package com.ysma.ppt.cache;
+package com.ysma.ppt.redis;
 
 import com.github.benmanes.caffeine.cache.CacheLoader;
 import com.github.benmanes.caffeine.cache.Caffeine;

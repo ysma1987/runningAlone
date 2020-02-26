@@ -235,7 +235,7 @@ public class EsLogService implements ILogService {
                     try {
                         esAggRepository.saveAll(logDtoList);
                     } catch (Exception e) {
-                        log.error("es 批量导入异常", e);
+                        log.error("com.ysma.ppt.es 批量导入异常", e);
                     }
                 });
             }
