@@ -12,8 +12,39 @@ public class ShowMeBug {
   public static ArrayList<Integer> mergeArray(ArrayList<Integer> arr1, ArrayList<Integer> arr2) {
     // 在这里写代码
     arr1.addAll(arr2);
-    fastSort(arr1, 0, arr1.size()-1);
+    quickSort(arr1, 0, arr1.size()-1);
     return arr1;
+  }
+
+  public static void quickSort(ArrayList<Integer> arr, int start, int end){
+    //1.快分
+    int key = arr.get(end);
+    int low = start;
+    int high = end;
+    while (low < high){
+      //前-> 后   小于key的 左边
+      while (low < high && arr.get(low) <= key)
+        low++;
+      if(arr.get(low) >= key){//swap
+        swap(arr, low, high);
+      }
+
+      //后-> 前 大于key的 右边
+      while (low < high && arr.get(high) >= key)
+        high--;
+      if(arr.get(high) <= key){
+        swap(arr, low, high);
+      }
+
+      if(low > start) quickSort(arr, start, low-1);
+      if(high < end) quickSort(arr, high + 1, end);
+    }
+  }
+
+  public static void swap(ArrayList<Integer> arr, int left, int right){
+    Integer temp = arr.get(left);
+    arr.set(left, arr.get(right));
+    arr.set(right, temp);
   }
 
   public static void fastSort(ArrayList<Integer> arr, int low, int high){
@@ -71,7 +102,7 @@ public class ShowMeBug {
   
   public static void main(String[] args) {
     test1();
-    //test2();
+    test2();
     //test3();
   }
 
@@ -92,7 +123,8 @@ public class ShowMeBug {
     ArrayList<Integer> result = mergeArray(arr1, arr2);
     for (Integer num : result) {
       System.out.print(num +",");
-    } // 期望输出 1 2 3 4 5 6    
+    } // 期望输出 1 2 3 4 5 6
+    System.out.println();
   }
 
   /*
@@ -115,7 +147,7 @@ public class ShowMeBug {
     
     ArrayList<Integer> result = mergeArray(arr1, arr2);
     for (Integer num : result) {
-      System.out.println(num);
+      System.out.print(num+",");
     } // 期望输出 [-10,1,2,3,4,10,100,200,300,400]
   }
 }
