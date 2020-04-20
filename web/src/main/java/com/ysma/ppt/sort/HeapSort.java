@@ -8,6 +8,7 @@ import org.apache.commons.lang3.ArrayUtils;
  * desc: 堆排序-大根堆
  * Date 2020/4/18 19:13
  */
+@SuppressWarnings("Duplicates")
 public class HeapSort {
 
     public static void main(String[] args) {
