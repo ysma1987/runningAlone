@@ -29,8 +29,8 @@ public class RabbitMqConsumer {
     @RabbitHandler
     public byte[] received(byte[] request, Channel channel, Message msg) throws IOException {
         channel.basicAck(msg.getMessageProperties().getDeliveryTag(), false);
-        Object ctuRequest = BeanByteUtil.toBean(request, Object.class);
-        serverHandlerPipeline.execute(ctuRequest);
+        Object message = BeanByteUtil.toBean(request, Object.class);
+        serverHandlerPipeline.execute(message);
         return BeanByteUtil.toByte("success");
     }
 }
