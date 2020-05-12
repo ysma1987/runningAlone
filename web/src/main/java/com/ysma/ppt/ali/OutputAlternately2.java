@@ -21,7 +21,7 @@ public class OutputAlternately2 {
         new Thread(()->{
             for(char c : c1){
                 try {
-                    System.out.println(queue.take());
+                    System.out.println(Thread.currentThread().getName() + ":" + queue.take());
                     queue.transfer(c);//没有线程来取走c  则阻塞
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -33,7 +33,7 @@ public class OutputAlternately2 {
             for(char c : c2){
                 try {
                     queue.transfer(c);//没有线程来取走c  则阻塞
-                    System.out.println(queue.take());
+                    System.out.println(Thread.currentThread().getName() + ":" + queue.take());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
