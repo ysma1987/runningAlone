@@ -29,12 +29,12 @@ public class OddNum {
 
         int target = 0;
         for(int i = 0; i < arr.length; i++){
-            if((arr[i] & rightOne) != 0){//分成两类  偶数和非偶数
-                target ^= arr[i];
-                System.out.println("test:" + arr[i] );
+            if((arr[i] & rightOne) != 0){//必然命中c或者d 可能命中其他x或者y等
+                target ^= arr[i];//target = c^x^x.... 或者d^y^y....  x y成对出现
             }
         }
-        System.out.println("onlyOne:" + (target ^ eor));
+        //target=c 则target^ero=c^c^d=d 反之亦然
+        System.out.println("有2种数出现了奇数次,出现奇数次的数为：" + target + " and " + (target ^ eor));
     }
 
     public static void main(String[] args) {
