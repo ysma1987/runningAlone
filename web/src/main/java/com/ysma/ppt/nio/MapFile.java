@@ -3,11 +3,16 @@ package com.ysma.ppt.nio;
 import lombok.Data;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+import sun.misc.Cleaner;
+import sun.nio.ch.DirectBuffer;
+import sun.nio.ch.FileChannelImpl;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -24,7 +29,7 @@ import java.util.stream.Collectors;
 public class MapFile {
 
 
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         MappedByteBuffer mbf = getFile();
         Map<String, Integer> calcMap = read(mbf);
         Word[] words = wrapWords(calcMap);
@@ -100,18 +105,41 @@ public class MapFile {
                 .forEach(word-> calcMap.compute(word, (key, v1)-> v1 == null ? 1 : v1 + 1));
     }
 
+    private static void unmap2(MappedByteBuffer mbf){
+        Cleaner cleaner = ((DirectBuffer) mbf).cleaner();
+        if(cleaner != null){
+            cleaner.clean();
+        }
+    }
+
+    private static void unmap(MappedByteBuffer mbf){
+        if(mbf == null){
+            return;
+        }
+
+        // 加上这几行代码,手动unmap
+        try {
+            mbf.force();
+
+            Method m = FileChannelImpl.class.getDeclaredMethod("unmap",
+                    MappedByteBuffer.class);
+            m.setAccessible(true);
+            m.invoke(FileChannelImpl.class, mbf);
+        } catch (NoSuchMethodException | IllegalAccessException |InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static Map<String, Integer> read(MappedByteBuffer mbf){
         Map<String, Integer> calcMap = new HashMap<>();
         byte[] bytes = new byte[1024];
         int remain = mbf.remaining();
         while (remain > 0){
-            if(remain > 1024){
-                mbf.get(bytes);
-            } else {
+            if (remain <= 1024) {
                 bytes = new byte[remain];
-                mbf.get(bytes);
             }
-            parse(calcMap, new String(bytes, Charset.forName("utf-8")));
+            mbf.get(bytes);
+            parse(calcMap, new String(bytes, StandardCharsets.UTF_8));
             remain = mbf.remaining();
         }
         return calcMap;
