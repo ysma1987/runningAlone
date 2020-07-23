@@ -10,6 +10,7 @@ import java.util.Base64;
 /**
  * @author ysma
  * AES加解密工具 from webconsole
+ * https://blog.csdn.net/qq_18870023/article/details/52596808
  */
 @Slf4j
 public class AESTool {

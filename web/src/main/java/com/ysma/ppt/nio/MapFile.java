@@ -118,6 +118,7 @@ public class MapFile {
     }
 
     private static MappedByteBuffer getFile(){
+        //fileChannel.map 这里的size最大 =Integer#MAX_VALUE 所以内存映射文件一次最大加载2G内容
         try (FileChannel fileChannel = FileChannel.open(Paths.get("D:\\ysma\\test","druid-slow-sql-2019-09-23.log"))){
             return fileChannel.map(FileChannel.MapMode.READ_ONLY, 0, fileChannel.size());
         }catch (IOException e) {
