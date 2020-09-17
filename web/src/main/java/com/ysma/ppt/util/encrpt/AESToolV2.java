@@ -5,44 +5,30 @@ import lombok.extern.slf4j.Slf4j;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
-import java.security.SecureRandom;
 import java.util.Base64;
-import java.util.Random;
 
 /**
- * @author mays
+ * @author ysma
  * AES加解密工具 from webconsole
+ * https://blog.csdn.net/qq_18870023/article/details/52596808
  */
 @Slf4j
-public class AESTool {
-
+public class AESToolV2 {
     public static final String DEFAULT_KEY = "1559038590713859";
-
     public static final String CHAR_ENCODING = "UTF-8";
-
     public static final String AES_ALGORITHM = "AES/ECB/PKCS5Padding";
+    public static final String RSA_ALGORITHM = "RSA/ECB/PKCS1Padding";
 
-    public static final int ENCRYPTION = 1;
-
-    public static final int DECRYPTION = 2;
-
-    private static Cipher initCipher(byte[] key, int opMode) {
-        try {
-            SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
-            byte[] enCodeFormat = secretKey.getEncoded();
-            SecretKeySpec secretKeySpec = new SecretKeySpec(enCodeFormat, "AES");
-            Cipher cipher = Cipher.getInstance(AES_ALGORITHM);
-            cipher.init(opMode, secretKeySpec);
-            return cipher;
-        } catch (Exception ex) {
-            log.error("AESTool.initCipher Exception", ex);
-            throw new RuntimeException("AESTool.initCipher init fail!", ex);
-        }
+    public AESToolV2() {
     }
 
     public static byte[] encrypt(byte[] data, byte[] key) {
         try {
-            Cipher cipher = initCipher(key, ENCRYPTION);
+            SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+            byte[] enCodeFormat = secretKey.getEncoded();
+            SecretKeySpec seckey = new SecretKeySpec(enCodeFormat, "AES");
+            Cipher cipher = Cipher.getInstance(AES_ALGORITHM);
+            cipher.init(1, seckey);
             return cipher.doFinal(data);
         } catch (Exception var7) {
             log.error("AESTool.encrypt Exception", var7);
@@ -52,7 +38,11 @@ public class AESTool {
 
     public static byte[] decrypt(byte[] data, byte[] key) {
         try {
-            Cipher cipher = initCipher(key, DECRYPTION);
+            SecretKeySpec secretKey = new SecretKeySpec(key, "AES");
+            byte[] enCodeFormat = secretKey.getEncoded();
+            SecretKeySpec seckey = new SecretKeySpec(enCodeFormat, "AES");
+            Cipher cipher = Cipher.getInstance(AES_ALGORITHM);
+            cipher.init(2, seckey);
             return cipher.doFinal(data);
         } catch (Exception var6) {
             log.error("AESTool.decrypt Exception", var6);
@@ -81,7 +71,7 @@ public class AESTool {
         }
     }
 
-    public static String encryptToBase64(String data) {
+    public static String encryptToBase64(String data){
         try {
             return new String(Base64.getEncoder().encode(data.getBytes()), CHAR_ENCODING);
         } catch (UnsupportedEncodingException var3) {
@@ -100,39 +90,10 @@ public class AESTool {
         }
     }
 
-    public static String aesKeyGen() {
-        StringBuilder uid = new StringBuilder();
-        //产生16位的强随机数
-        Random rd = new SecureRandom();
-        for (int i = 0; i < 16; i++) {
-            //产生0-2的3位随机数
-            int type = rd.nextInt(3);
-            switch (type){
-                case 0:
-                    //0-9的随机数
-                    uid.append(rd.nextInt(10));
-                    break;
-                case 1:
-                    //ASCII在65-90之间为大写,获取大写随机
-                    uid.append((char)(rd.nextInt(25)+65));
-                    break;
-                case 2:
-                    //ASCII在97-122之间为小写，获取小写随机
-                    uid.append((char)(rd.nextInt(25)+97));
-                    break;
-                default:
-                    break;
-            }
-        }
-        return uid.toString();
-    }
-
     public static void main(String[] args) {
-        String key = aesKeyGen();
-        System.out.print(key + "\n");
-        String password = encryptToBase64("Hell0Hadp", key);
-        System.out.print(password + "\n");
-        String origin = decryptFromBase64(password, key);
-        System.out.print(origin);
+        String password =encryptToBase64("Hell0Hadp", DEFAULT_KEY);
+        System.out.println(password);
+        String origin = decryptFromBase64(password, DEFAULT_KEY);
+        System.out.println(origin);
     }
 }
